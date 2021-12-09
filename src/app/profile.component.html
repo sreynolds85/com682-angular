@@ -1,0 +1,99 @@
+<div class="container" style="margin-top: 90px;">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header heading">
+                       <div class="avatar-container">
+                           <ngx-avatar name="username"></ngx-avatar>
+                        </div>
+                        <div class = "title-and-date">
+                            <div>Username: {{user.username}}</div>
+                            <div>Email: {{user.email}}</div>
+                            <div>Location: {{user.location}}</div>
+                        </div>
+                        <div class = "title-and-date">
+                            <div>Full name: {{user.userFullName}}</div>
+                            <div>Followers: {{myFollowers}}</div>
+                            <div>Users followed: {{usersFollowedCount}}</div>
+                        </div>
+                        <div class="edit_profile" style="width: 300px;">
+                            <button class="btn-primary" [routerLink]="['/update']">
+                                Edit Info</button>
+                            <button class="btn-primary" (click)="deleteProfileDialog()"
+                             style="padding-right: 10px;">Delete Profile</button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div><h4> My Articles </h4><button style="margin-bottom: 8px;"
+                             (click)="toggle(ContentElement1)">Show</button></div>
+                        <div #ContentElement1 class="hide">
+                            <div *ngFor = "let article of myArticles" class="article-card">
+                                <div class="card text-white bg-primary mb-3" 
+                                [routerLink]="['/articles', article._id]" style="cursor: pointer">
+                                    <div class="card-header heading">
+                                    <div class="avatar-container">
+                                </div>
+                                    <div class = "title-and-date">
+                                        <h4>{{article.title}}</h4>
+                                        <div class="date-published">Published: {{article.date_created}}</div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="article-buttons">
+                                <button class="btn-primary" id="edit_{{article._id}}" 
+                                (click)="edit($event)">Edit</button>
+                                <button class="btn-primary" id="delete_{{article._id}}" 
+                                style="background-color: red;margin-left: 6px; border: 1px solid white;" 
+                                (click)="delete($event)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div><h4> Users Followed </h4><button style="margin-bottom: 8px;" 
+                        (click)="toggle(ContentElement2)">Show</button></div>
+                     <div #ContentElement2 class="hide">
+                         <div *ngFor = "let user of usersFollowedArr" 
+                         style="display: flex; flex-direction: row;">
+                            <ngx-avatar name="{{user.username}}"></ngx-avatar>
+                            <div>
+                                <div class = "title-and-date">
+                                    <h4>{{user.username}}</h4>
+                                    <div class="date-published">Followers: {{user.my_followers.length}}</div>
+                                    <div class="date-published">Following: {{user.users_followed.length}}</div>
+                                </div>  
+                                <div class="article-buttons">
+                                    <button class="btn-primary" id="unfollow_{{user._id}}" 
+                                    (click)="unfollow($event)">Unfollow</button>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+                    <div class="card-footer">
+                        <div><h4 style="color: #FFFFFF;"> My Liked Articles 
+                        </h4><button style="margin-bottom: 8px;" (click)="toggle(ContentElement3)">
+                            Show</button></div>
+                        <div #ContentElement3 class="hide">
+                            <div *ngFor = "let article of likedArticles">
+                                <div>
+                                    <div class="card text-white bg-primary mb-3" 
+                                    [routerLink]="['/articles', article._id]" style="cursor: pointer">
+                                        <div class="card-header heading">
+                                        <div class="avatar-container">
+                                    </div>
+                                        <div class = "title-and-date">
+                                            <h4>{{article.title}}</h4>
+                                            <div class="date-published">Published: {{article.date_created}}</div>
+                                            <div class="date-published">Author: {{article.author_name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+    </div>
+</div>

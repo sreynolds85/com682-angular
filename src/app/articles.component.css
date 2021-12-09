@@ -1,0 +1,55 @@
+.article_container {
+    border: 2px solid;
+}
+.avatar-container {
+    margin-top: 12px;
+}
+.title-and-date {
+    display: flex;
+    flex-direction: column;
+    margin:12px;
+}
+
+.card-body {
+    background-color: #393939!important;
+}
+
+.card-footer {
+    background-color: #393939!important;
+}
+
+.date {
+    font-size: x-small;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    background-color: #202945!important;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.author-and-date {
+    display: flex;
+    flex-direction: column;
+    margin-right: 36px;
+}
+
+.likes-container {
+    display: flex;
+    flex-direction: row;
+    margin: 12px;
+}
+
+.like-counter {
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.btn {
+    margin-bottom: 12px;
+}

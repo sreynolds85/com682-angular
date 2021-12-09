@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: 70px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Update your personal Info</h2>
+                <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname"
+                        class="form-control" formControlName="firstname"
+                         [ngClass]="{'error': isInvalid('firstname')}" 
+                         [(ngModel)]="userFirstName">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname"
+                        class="form-control" formControlName="lastname"
+                         [ngClass]="{'error': isInvalid('lastname')}" 
+                         [(ngModel)]="userLastName">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location"
+                        class="form-control" formControlName="location" 
+                        [ngClass]="{'error': isInvalid('location')}" 
+                        [(ngModel)]="userLocation">
+                    </div>
+                    <div class="form-group">
+                        <label for="newpassword">New password:</label>
+                        <input type="text" id="newpassword" name="newpassword"
+                         class="form-control"formControlName="newpassword" 
+                         [ngClass]="{'error': isInvalid('newpassword')}">
+                        <label for="newpasswordconfirm">Confirm password:</label>
+                        <input type="text" id="newpasswordconfirm" 
+                        name="newpasswordconfirm" class="form-control"
+                        formControlName="newpasswordconfirm" 
+                        [ngClass]="{'error': isInvalid('newpasswordconfirm')}">
+                        <span *ngIf="passwordValidator(updateForm)" 
+                        style="color: red;">Password and confirmation must match</span>
+                    </div>
+                    <span *ngIf="isIncomplete() || this.updateForm.pristine" 
+                    style="color:red;">You must complete all fields</span><br/>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 12px;" 
+                    *ngIf="!isIncomplete() || this.updateForm.pristine">Submit</button>
+                </form>
+        </div>
+    </div>
+</div>

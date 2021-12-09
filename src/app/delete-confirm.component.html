@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modTitle }}</h4>
+      <button type="button" class="close" aria-label="Close"
+       (click)="dismissModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{ warning }}
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="delete_{{user._id}}" class="btn btn-danger"
+       (click)="confirmDeletion()">{{ confirmBtn }}</button>
+      <button type="button" class="btn btn-primary" (click)="cancelDeletion()">
+        {{ cancelDeleteBtn }}</button>
+    </div>

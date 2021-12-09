@@ -1,0 +1,82 @@
+.article_container {
+    border: 2px solid;
+    color: #ffffff!important;
+}
+.avatar-container {
+    margin-top: 12px;
+}
+.title-and-date {
+    display: flex;
+    flex-direction: column;
+    margin:12px;
+}
+
+.card-body {
+    background-color: #393939!important;
+}
+
+.card-footer {
+    background-color: #393939!important;
+}
+
+.date {
+    font-size: x-small;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    background-color: #202945!important;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.author-and-date {
+    display: flex;
+    flex-direction: column;
+    margin-right: 36px;
+}
+
+.likes-container {
+    display: flex;
+    flex-direction: row;
+    margin: 12px;
+    color: #FFFFFF;
+     
+}
+
+.like-counter {
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.comment-header{
+    display: flex;
+    flex-direction: row;
+}
+.comment-text {
+    color: #FFFFFF;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0px 12px 0px;
+    padding-bottom: 12px;
+    width: 50%;
+}
+
+.comment-input-div {
+    display: flex;
+    flex-direction: row;
+}
+
+#comment-input {
+    width: 70%;
+    margin-right: 8px; 
+}
+
+.error { background-color: #FFFFED; }

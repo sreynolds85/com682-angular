@@ -1,0 +1,93 @@
+<div class="container" style="margin-top: 70px;">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header heading">
+                       <div class="avatar-container">
+                           <ngx-avatar name="{{article.author_name}}"></ngx-avatar>
+                        </div>
+                        <div class = "title-and-date">
+                            <div>{{article.title}}</div>
+                            <div class="date-published">Published: {{article.date_created}}</div>
+                        </div>
+                        <ng-container *ngIf = "authService.isAuthenticated$ | async">
+                            <button id="follow_author_{{article.author_id}}"
+                             (click)="follow($event)">Follow {{article.author_name}}</button>
+                        </ng-container>
+                    </div>
+                    <div class="card-body article-container">
+                        {{article.article_body}}
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-container">
+                            <div class="author-and-date">
+                                <div>Posted by: {{article.author_name}}</div>
+                                <div>Last update: {{article.date_updated}}</div>
+                            </div>
+                            <div class="likes-container">
+                                <ng-container *ngIf = "authService.isAuthenticated$ | async" >
+                                    <button id="article_like" (click)="like_article()">Like</button>
+                                </ng-container>
+                                <div class=like-counter>Likes: {{article.likes_count}}</div>
+                                <div class="like-counter">Tag: {{article.tags}}</div>
+                                <div class="like-counter">Language: {{article.language}}</div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="comment-box">
+                                <ng-container *ngIf = "authService.isAuthenticated$ | async">
+                                    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+                                        <div>
+                                            <h4>Add a new comment:</h4>
+                                        </div>
+                                        <div class="comment-input-div">
+                                            <textarea id="comment-input" name="comment" cols="6"
+                                             formControlName="comment" [ngClass]="{'error': isInvalid('comment')}" >
+                                            </textarea>
+                                            <span *ngIf="isIncomplete()">Please add your comment</span>
+                                            <button *ngIf="!isIncomplete()" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card bg-light mb-3" *ngFor = "let comment of comment_list">
+                                <div class="card-header">
+                                    <div class="comment-header">
+                                        <div class="avatar-container">
+                                            <ngx-avatar name="{{comment.username}}"></ngx-avatar>
+                                        </div>
+                                        <div class = "title-and-date">
+                                            <div> Author: {{comment.username}}</div>
+                                            <div class="date-published">Date: {{comment.created_date}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body article-container">
+                                    <div class="comment-text">{{comment.comment_body}}</div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="likes-container">
+                                        <ng-container *ngIf = "authService.isAuthenticated$ | async">
+                                            <button id="{{comment.comment_id}}" name="{{comment.comment_id}}"
+                                             (click)="like_comment($event)">Like</button>
+                                        </ng-container>
+                                        <div class=like-counter>Likes: {{comment.comment_likes_count}}</div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

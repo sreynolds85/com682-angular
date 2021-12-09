@@ -1,0 +1,43 @@
+<div class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+    <span class="navbar-brand">Blog-O-Rama</span>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" routerLink='/articles'>Articles</a></li>
+        <li>
+            <form [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+                <input type="text" id="searchString" name="searchString" 
+                formControlName="searchString" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </li>
+        <li class="nav-item lang">
+            Select langauage: 
+            <select id="lang-select"  (input)="onChange($event)">
+                <option value="--">--</option>
+                <option value="en">en</option>
+                <option value="it">it</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="ja">ja</option>
+            </select>
+        </li>
+    </ul>
+    <div class = "form-inline ms-auto"style = "margin-right: 10px;">
+        <ng-container *ngIf = "authService.isAuthenticated$ | async; else loggedOut">
+            <button class="btn btn-outline-light"  [routerLink]="['newArticle']" 
+            style="margin-right: 6px;">New Article</button>
+            <button class="btn btn-outline-light"  [routerLink]="['profile']"
+             style="margin-right: 6px;">My Profile</button>
+            <button class="btn btn-outline-light" (click) = "authService.logout()"
+             [routerLink]="['/articles']">Logout</button>
+        </ng-container>
+        <ng-template #loggedOut>
+            <button class="btn btn-outline-light" style="margin-right: 6px;">
+                Sign Up
+            </button>
+            <button class="btn btn-outline-light" 
+                (click) = "authService.loginWithRedirect({ appState : { target : this.router.url } })">
+                Login
+            </button>
+        </ng-template>
+    </div>
+</div>
